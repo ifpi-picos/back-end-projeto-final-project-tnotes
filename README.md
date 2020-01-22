@@ -1,4 +1,4 @@
-# [Coloque o nome do seu projeto aqui]
+# Tnotes - Plataforma de gerenciamento de tarefas
 
 
 Implements Javascript best practices validated by eslint based on the Airbnb JavaScript Style Guide
