@@ -37,9 +37,10 @@ class UsersController {
     try {
       const user = await this.User.findOne({ email: emails });
       if (!user || !(bcrypt.compareSync(password, user.password))) {
-        return false;
+        throw new Error('Senha ou email invalido!');
       }
       return {
+        id: user._id,
         name: user.name,
         email: user.email,
       };
