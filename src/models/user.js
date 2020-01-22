@@ -7,17 +7,15 @@ const schema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    trim: true,
   },
   email: {
     type: String,
     required: true,
-    trim: true,
   },
   password: {
     type: String,
-    trim: true,
-    min: 8,
+    required: true,
+
   },
 });
 
