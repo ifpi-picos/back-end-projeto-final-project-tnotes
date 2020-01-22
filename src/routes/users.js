@@ -1,9 +1,14 @@
 const express = require('express');
-const UsersController = require('../controllers/users');
-const User = require('../models/user');
-const message = require('../utils/message.json');
-const UserValidacao = require('../validator/user');
 const { validationResult } = require('express-validator');
+// eslint-disable-next-line import/newline-after-import
+const Login = require('../validator/login');
+const login = new Login();
+const UsersController = require('../controllers/users');
+const UserValidacao = require('../validator/user');
+const message = require('../utils/message.json');
+const User = require('../models/user');
+// eslint-disable-next-line import/newline-after-import
+// eslint-disable-next-line import/order
 const userValidacao = new UserValidacao();
 
 const router = express.Router();
@@ -20,11 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const {
-    params: {
-      id
-    },
-  } = req;
+  const { params: { id } } = req;
   try {
     const user = await usersController.getById(id);
     res.send(user);
@@ -36,16 +37,28 @@ router.get('/:id', async (req, res) => {
 router.post('/', userValidacao.validacao(), async (req, res) => {
   const erro = validationResult(req);
   if (!erro.isEmpty()) {
-    res.status(400).send({
-      erro: erro.array()
-    });
+    res.status(400).send({ erro: erro.array() });
   } else {
-
     try {
       await usersController.create(req.body);
       res.status(201).send(message.success.createUser);
     } catch (err) {
       res.status(400).send(err);
+    }
+  }
+});
+
+router.post('/login', login.validacao(), async (req, res) => {
+  const erro = validationResult(req);
+  if (!erro.isEmpty()) {
+    res.status(400).send({ erro: erro.array() });
+  } else {
+    const { email, password } = req.body;
+    try {
+      const user = await usersController.login(email, password);
+      res.send(user).status(200);
+    } catch (err) {
+      res.send(err).status(400);
     }
   }
 });
