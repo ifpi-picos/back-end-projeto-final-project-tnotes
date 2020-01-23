@@ -51,16 +51,15 @@ router.post('/', userValidacao.validacao(), async (req, res) => {
 router.post('/login', login.validacao(), async (req, res) => {
   const erro = validationResult(req);
   if (!erro.isEmpty()) {
-    
     res.status(400).send({ erro: erro.array() });
   } else {
     const { email, password } = req.body;
     try {
       const user = await usersController.login(email, password);
       const response = {
-        msg: "Usuario logado",
-        usuario: user
-      }
+        msg: 'Usuario logado',
+        usuario: user,
+      };
       res.send(response).status(200);
     } catch (err) {
       res.status(400).send(err);

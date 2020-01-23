@@ -36,7 +36,7 @@ schema.pre('update', function (next) {
 schema.methods.comparePassword = function (candidatePassword) {
   const passwords = {
     candidatePassword,
-    password: this.password
+    password: this.password,
   };
   return new Promise((resolve, reject) => {
     bcrypt.compare(passwords, (err, success) => {

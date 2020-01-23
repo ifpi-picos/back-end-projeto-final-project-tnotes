@@ -10,8 +10,6 @@ const logger = require('./config/logger');
 
 const app = express();
 
-// app.listen(PORTA, () => console.log('App online...'));
-
 const configureExpress = () => {
   app.use(cors());
   app.use(helmet());

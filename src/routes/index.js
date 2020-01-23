@@ -3,7 +3,7 @@ const usuariosRoute = require('./users');
 
 const router = express.Router();
 
-router.use('/users', usuariosRoute);
-router.get('/', (req, res) => res.send('App Online!'));
+router.use('/http://tnotes.surge.sh/', usuariosRoute);
+router.get('/http://tnotes.surge.sh/', (req, res) => res.send('App Online!'));
 
 module.exports = router;
