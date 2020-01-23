@@ -32,6 +32,3 @@ $ npm test
 ## Code Style Guide
 
 Syntax that is permitted is based in the [Airbnb Style Guide](https://github.com/jesielviana/javascript-style-guide-for-nodejs).
-
-
-
